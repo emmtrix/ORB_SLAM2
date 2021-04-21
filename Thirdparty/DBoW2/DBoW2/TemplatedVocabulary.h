@@ -238,7 +238,8 @@ public:
    * Loads the vocabulary from a text file
    * @param filename
    */
-  bool loadFromTextFile(const std::string &filename);
+  //bool loadFromTextFile(const std::string &filename);
+  bool loadFromTextFile(const float vocData[][35]);
 
   /**
    * Saves the vocabulary into a text file
@@ -1334,27 +1335,35 @@ int TemplatedVocabulary<TDescriptor,F>::stopWords(double minWeight)
 
 // --------------------------------------------------------------------------
 
+//template<class TDescriptor, class F>
+//bool TemplatedVocabulary<TDescriptor,F>::loadFromTextFile(const std::string &filename)
 template<class TDescriptor, class F>
-bool TemplatedVocabulary<TDescriptor,F>::loadFromTextFile(const std::string &filename)
+bool TemplatedVocabulary<TDescriptor,F>::loadFromTextFile(const float vocData[][35])
 {
-    ifstream f;
-    f.open(filename.c_str());
+    //ifstream f;
+    //f.open(filename.c_str());
+    //f.open("Vocabulary/ORBvoc.txt");
 	
-    if(f.eof())
-	return false;
+    //if(f.eof())
+	//return false;
 
     m_words.clear();
     m_nodes.clear();
 
-    string s;
-    getline(f,s);
-    stringstream ss;
-    ss << s;
-    ss >> m_k;
-    ss >> m_L;
+    //string s;
+    //getline(f,s);
+    //stringstream ss;
+    //ss << s;
+    //ss >> m_k;
+    //ss >> m_L;
     int n1, n2;
-    ss >> n1;
-    ss >> n2;
+    //ss >> n1;
+    //ss >> n2;
+
+    m_k = 10;
+    m_L = 6;
+    n1  = 0;
+    n2  = 0;
 
     if(m_k<0 || m_k>20 || m_L<1 || m_L>10 || n1<0 || n1>5 || n2<0 || n2>3)
     {
@@ -1375,35 +1384,40 @@ bool TemplatedVocabulary<TDescriptor,F>::loadFromTextFile(const std::string &fil
 
     m_nodes.resize(1);
     m_nodes[0].id = 0;
-    while(!f.eof())
+    //while(!f.eof())
+    for(int i=0; i<1082072; i++)
     {
-        string snode;
-        getline(f,snode);
-        stringstream ssnode;
-        ssnode << snode;
+        //string snode;
+        //getline(f,snode);
+        //stringstream ssnode;
+        //ssnode << snode;
 
         int nid = m_nodes.size();
         m_nodes.resize(m_nodes.size()+1);
 	m_nodes[nid].id = nid;
 	
-        int pid ;
-        ssnode >> pid;
+        //int pid ;
+        //ssnode >> pid;
+        int pid = (int)vocData[i][0];
         m_nodes[nid].parent = pid;
         m_nodes[pid].children.push_back(nid);
 
-        int nIsLeaf;
-        ssnode >> nIsLeaf;
+        //int nIsLeaf;
+        //ssnode >> nIsLeaf;
+        int nIsLeaf = (int)vocData[i][1];
 
         stringstream ssd;
         for(int iD=0;iD<F::L;iD++)
         {
-            string sElement;
-            ssnode >> sElement;
-            ssd << sElement << " ";
+            //string sElement;
+            //ssnode >> sElement;
+            //ssd << sElement << " ";
+            ssd << (int)vocData[i][2+iD] << " ";
 	}
         F::fromString(m_nodes[nid].descriptor, ssd.str());
 
-        ssnode >> m_nodes[nid].weight;
+        //ssnode >> m_nodes[nid].weight;
+        m_nodes[nid].weight = vocData[i][34];
 
         if(nIsLeaf>0)
         {

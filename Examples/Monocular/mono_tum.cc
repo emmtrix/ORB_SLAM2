@@ -28,10 +28,14 @@
 
 #include<System.h>
 
+#include "../Examples/Monocular/ImageFilenames.h"
+
+#include "../Thirdparty/DBoW2/DBoW2/ORBvoc.h"
+
 using namespace std;
 
-void LoadImages(const string &strFile, vector<string> &vstrImageFilenames,
-                vector<double> &vTimestamps);
+/*void LoadImages(const string &strFile, vector<string> &vstrImageFilenames,
+                vector<double> &vTimestamps);*/
 
 int main(int argc, char **argv)
 {
@@ -42,15 +46,16 @@ int main(int argc, char **argv)
     }
 
     // Retrieve paths to images
-    vector<string> vstrImageFilenames;
-    vector<double> vTimestamps;
-    string strFile = string(argv[3])+"/rgb.txt";
-    LoadImages(strFile, vstrImageFilenames, vTimestamps);
+    //vector<string> vstrImageFilenames;
+    //vector<double> vTimestamps;
+    //string strFile = string(argv[3])+"/rgb.txt";
+    //LoadImages(strFile, vstrImageFilenames, vTimestamps);
 
     int nImages = vstrImageFilenames.size();
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::MONOCULAR,true);
+    //ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::MONOCULAR,true);
+    ORB_SLAM2::System SLAM(orb_voc,argv[2],ORB_SLAM2::System::MONOCULAR,true);
 
     // Vector for tracking time statistics
     vector<float> vTimesTrack;
@@ -124,7 +129,7 @@ int main(int argc, char **argv)
 
     return 0;
 }
-
+/*
 void LoadImages(const string &strFile, vector<string> &vstrImageFilenames, vector<double> &vTimestamps)
 {
     ifstream f;
@@ -153,3 +158,4 @@ void LoadImages(const string &strFile, vector<string> &vstrImageFilenames, vecto
         }
     }
 }
+*/

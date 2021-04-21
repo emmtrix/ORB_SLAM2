@@ -30,7 +30,11 @@
 namespace ORB_SLAM2
 {
 
+/*
 System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor,
+               const bool bUseViewer):mSensor(sensor), mpViewer(static_cast<Viewer*>(NULL)), mbReset(false),mbActivateLocalizationMode(false),
+        mbDeactivateLocalizationMode(false) */
+System::System(const float orbVoc[][35], const string &strSettingsFile, const eSensor sensor,
                const bool bUseViewer):mSensor(sensor), /*mpViewer(static_cast<Viewer*>(NULL)),*/ mbReset(false),mbActivateLocalizationMode(false),
         mbDeactivateLocalizationMode(false)
 {
@@ -63,11 +67,12 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     cout << endl << "Loading ORB Vocabulary. This could take a while..." << endl;
 
     mpVocabulary = new ORBVocabulary();
-    bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile);
+    //bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile);
+    bool bVocLoad = mpVocabulary->loadFromTextFile(orbVoc);
     if(!bVocLoad)
     {
         cerr << "Wrong path to vocabulary. " << endl;
-        cerr << "Falied to open at: " << strVocFile << endl;
+        //cerr << "Falied to open at: " << strVocFile << endl;
         exit(-1);
     }
     cout << "Vocabulary loaded!" << endl << endl;

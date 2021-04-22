@@ -30,7 +30,7 @@
 
 #include "../Examples/Monocular/ImageFilenames.h"
 
-#include "../Thirdparty/DBoW2/DBoW2/ORBvoc.h"
+#include "../Vocabulary/ORBvoc.h"
 
 using namespace std;
 

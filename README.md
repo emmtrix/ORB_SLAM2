@@ -238,3 +238,27 @@ This is the default mode. The system runs in parallal three threads: Tracking, L
 ### Localization Mode
 This mode can be used when you have a good map of your working area. In this mode the Local Mapping and Loop Closing are deactivated. The system localizes the camera in the map (which is no longer updated), using relocalization if needed. 
 
+# 10. mono_tum without GUI
+### How to run
+#### Dataset & Vocabulary
+1. download_dataset.sh
+2. uncompress_vocabulary.sh
+
+#### Clone
+3. clone.sh
+
+#### Build
+4. build_eigen.sh
+5. build_opencv.sh
+6. build_DBoW2.sh
+7. build_g2o.sh
+8. build_ORB_SLAM2.sh
+
+#### Run
+9. run_mono_tum.sh
+
+### How to clean (need to rebuild)
+1. clean.sh
+
+### How to remove (need to reclone)
+1. remove.sh

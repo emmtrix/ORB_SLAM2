@@ -22,6 +22,8 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+#define usleep(x) sleep(x/1000)
+
 #include<string>
 #include<thread>
 #include<opencv2/core/core.hpp>

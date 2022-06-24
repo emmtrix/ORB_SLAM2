@@ -26,7 +26,6 @@
 
 #include "os_specific.h"
 
-#ifdef WINDOWS
 
 int vasprintf(char** strp, const char* fmt, va_list ap)
 {
@@ -61,4 +60,3 @@ int vasprintf(char** strp, const char* fmt, va_list ap)
 }
 
 
-#endif

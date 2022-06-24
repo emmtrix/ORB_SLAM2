@@ -27,7 +27,6 @@
 #ifndef G2O_OS_SPECIFIC_HH_
 #define G2O_OS_SPECIFIC_HH_
 
-#ifdef WINDOWS
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -53,4 +52,3 @@ int vasprintf(char** strp, const char* fmt, va_list ap);
 // nothing to do on real operating systems
 #endif
 
-#endif

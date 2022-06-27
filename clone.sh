@@ -1,6 +1,6 @@
-echo "Cloning EIGEN 3.1 ..."
+echo "Cloning EIGEN 3.1-static-link ..."
 
-git clone -b 3.1 https://gitlab.com/libeigen/eigen.git
+git clone -b 3.1-static-link https://gitlab.com/ryuei-washida-nsitexe/eigen.git
 
 echo "Cloning opencv & opencv_contrib 3.4 ..."
 

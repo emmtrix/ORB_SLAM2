@@ -29,6 +29,12 @@
 #include <iostream>
 #include <typeinfo>
 #include <cassert>
+#ifndef max
+#define max(a,b) ((a)>(b)?(a):(b))
+#endif
+#ifndef min
+#define min(a,b) ((a)<(b)?(a):(b))
+#endif
 
 using namespace std;
 
@@ -102,7 +108,7 @@ namespace g2o {
   {
     size_t solverNameColumnLength = 0;
     for (CreatorList::const_iterator it = _creator.begin(); it != _creator.end(); ++it)
-      solverNameColumnLength = std::max(solverNameColumnLength, (*it)->property().name.size());
+      solverNameColumnLength = max(solverNameColumnLength, (*it)->property().name.size());
     solverNameColumnLength += 4;
 
     for (CreatorList::const_iterator it = _creator.begin(); it != _creator.end(); ++it) {

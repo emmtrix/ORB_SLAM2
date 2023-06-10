@@ -36,6 +36,7 @@
 #include <Eigen/Cholesky>
 #include <Eigen/StdVector>
 #include <stack>
+#pragma warning (disable : 4996)
 
 namespace g2o {
 

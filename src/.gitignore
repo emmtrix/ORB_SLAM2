@@ -1,0 +1,12 @@
+_test*.cpp
+*.check
+*.gen*
+*.ii
+debug*.cpp
+debug*.txt
+faillist.txt
+*.exe
+*.orig
+nogit
+*.template
+*.tmp
